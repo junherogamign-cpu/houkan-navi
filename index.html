@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>訪問看護制度ナビ β版</title>
+<style>
+:root{--bg:#f7f8fa;--card:#fff;--text:#20242a;--muted:#69717d;--line:#e4e7eb;--accent:#2563eb;--soft:#eef4ff;--warn:#fff7e6}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:28px 18px 60px}.head{margin-bottom:22px}.head h1{font-size:25px;margin:0 0 4px}.head p{margin:0;color:var(--muted);font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin:14px 0;box-shadow:0 2px 8px rgba(0,0,0,.03)}
+label.title{display:block;font-weight:700;margin-bottom:8px}.sub{font-size:12px;color:var(--muted)}
+input,select,textarea{width:100%;border:1px solid #d6dae0;border-radius:10px;padding:12px;font-size:16px;background:#fff}
+textarea{min-height:110px;resize:vertical}.choices{display:flex;gap:8px;flex-wrap:wrap}.choices label{border:1px solid #d6dae0;border-radius:10px;padding:9px 13px;cursor:pointer}.choices input{width:auto;margin-right:5px}
+.check{display:flex;align-items:center;gap:10px;font-weight:600}.check input{width:20px;height:20px}
+button{width:100%;border:0;border-radius:11px;padding:13px 16px;background:var(--accent);color:#fff;font-size:16px;font-weight:700;cursor:pointer}
+.result{display:none}.result h2{font-size:19px;margin:0 0 10px}.answer{font-size:17px;font-weight:700}.box{background:var(--soft);border-radius:10px;padding:14px;margin-top:12px}.warn{background:var(--warn);border-radius:10px;padding:14px;margin-top:12px}.source{font-size:12px;color:var(--muted);margin-top:14px}.source a{color:var(--accent)}
+ul{margin:8px 0 0;padding-left:20px}.term{color:var(--accent);text-decoration:underline;cursor:pointer}.back{display:inline-block;margin-top:10px;color:var(--accent);cursor:pointer;font-size:13px}
+.smallbtn{background:#fff;color:var(--accent);border:1px solid #cbd5e1;margin-top:10px}
+footer{font-size:11px;color:var(--muted);margin-top:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <h1>訪問看護制度ナビ β版</h1>
+    <p>細かくてややこしい訪問看護制度を、必要な条件から一緒に確認します。</p>
+  </div>
+
+  <div class="card">
+    <label class="title">年齢</label>
+    <input id="age" type="number" min="0" max="120" placeholder="例：75">
+  </div>
+
+  <div class="card">
+    <label class="title">保険の種類</label>
+    <div class="choices">
+      <label><input type="radio" name="insurance" value="介護保険">介護保険</label>
+      <label><input type="radio" name="insurance" value="医療保険">医療保険</label>
+      <label><input type="radio" name="insurance" value="わからない" checked>わからない</label>
+    </div>
+  </div>
+
+  <div class="card">
+    <label class="title">疾患・状態</label>
+    <textarea id="condition" placeholder="例：パーキンソン病、脳梗塞後遺症、末期がん など"></textarea>
+  </div>
+
+  <div class="card">
+    <label class="title">知りたいこと <span class="sub">（自由入力）</span></label>
+    <textarea id="question" placeholder="例：退院日に訪問できる？ 初回加算は取れる？"></textarea>
+  </div>
+
+  <div class="card">
+    <label class="check"><input id="check" type="checkbox" checked> 見落としチェックもする</label>
+    <div class="sub">関連する条件や、追加で確認した方がよい点も表示します。</div>
+  </div>
+
+  <button onclick="answer()">制度を確認する</button>
+
+  <div id="result" class="card result"></div>
+
+  <div id="glossary" class="card" style="display:none">
+    <h2>用語を確認する</h2>
+    <div id="terms"></div>
+  </div>
+
+  <footer>β版：実務確認用の試作です。制度判断は最新の厚生労働省資料・自治体等の運用も確認してください。</footer>
+</div>
+
+<script>
+const sources = {
+ care:"https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000188411_00073.html",
+ medical:"https://www.mhlw.go.jp/stf/newpage_67729.html",
+ careNotice:"https://www.mhlw.go.jp/web/t_doc?dataId=82aa0253&dataType=0&pageNo=1",
+ medicalFee:"https://www.mhlw.go.jp/web/t_doc?dataId=84aa9734&dataType=0"
+};
+
+function answer(){
+  const ins=document.querySelector('input[name="insurance"]:checked')?.value||"わからない";
+  const cond=document.getElementById('condition').value.trim();
+  const q=document.getElementById('question').value.trim();
+  const result=document.getElementById('result');
+  let html="<h2>確認結果</h2>";
+
+  if(!q){
+    html+="<div class='answer'>知りたいことを入力してください。</div>";
+    result.innerHTML=html; result.style.display="block"; return;
+  }
+
+  const s=q+cond;
+
+  // Discharge-day / initial-add-on educational rule.
+  if(/退院|退所/.test(s) && /初回加算|初回訪問|訪問でき/.test(s) && (ins==="介護保険"||ins==="わからない")){
+    html+="<div class='answer'>介護保険では、退院・退所日に初回訪問できるケースがあります。2026年度は、条件を満たすと初回加算（Ⅰ）350単位です。</div>";
+    html+="<div class='box'><b>ただし、ここだけでは最終判断できません。</b><ul><li>どこから退院・退所したか</li><li>新規に訪問看護計画書を作成したか</li><li>退院・退所日に看護師が初回訪問したか</li></ul></div>";
+    if(document.getElementById('check').checked) html+="<div class='warn'><b>見落としチェック</b><br>「退院日」だけでは判断しません。退院元によって扱いが変わるため、追加確認が必要です。<br><br>通常の初回加算（Ⅱ）は300単位で、（Ⅰ）とは併算定できません。</div>";
+    html+=`<div class='source'>根拠：厚生労働省 令和8年度介護報酬改定・算定基準<br><a href="${sources.careNotice}" target="_blank">一次資料を開く</a></div>`;
+  } else if(/退院|退所/.test(s) && /初回加算|初回訪問|訪問でき/.test(s) && ins==="医療保険"){
+    html+="<div class='answer'>医療保険でも退院日に訪問する仕組みがありますが、「初回加算」という介護保険の加算とは別に考えます。</div>";
+    html+="<div class='box'><b>確認すること</b><ul><li>退院日に在宅で療養上必要な指導を行ったか</li><li>退院支援指導の対象者か</li><li>退院後の最初の指定訪問看護との関係</li></ul></div>";
+    if(document.getElementById('check').checked) html+="<div class='warn'><b>見落としチェック</b><br>医療保険では、退院支援指導加算は原則として退院日の翌日以降初日の指定訪問看護時に算定する仕組みです。対象者・算定タイミングを確認してください。</div>";
+    html+=`<div class='source'>根拠：厚生労働省 訪問看護療養費算定方法<br><a href="${sources.medicalFee}" target="_blank">一次資料を開く</a></div>`;
+  } else if(/初回加算|再開|久しぶり/.test(s) && ins==="介護保険"){
+    html+="<div class='answer'>介護保険の初回加算は「久しぶり」だけで決まりません。新規の訪問看護計画書や、過去の利用状況などの条件確認が必要です。</div>";
+    html+="<div class='box'><b>追加確認</b><ul><li>同じ訪問看護事業所から過去2暦月に訪問看護を受けていないか</li><li>新規に訪問看護計画書を作成したか</li></ul></div>";
+    if(document.getElementById('check').checked) html+="<div class='warn'><b>見落としチェック</b><br>医療保険による訪問看護の利用状況も確認対象になります。</div>";
+    html+=`<div class='source'>根拠：厚生労働省 令和8年度介護報酬改定資料<br><a href="${sources.care}" target="_blank">一次資料を開く</a></div>`;
+  } else if(/パーキンソン/.test(s)){
+    html+="<div class='answer'>パーキンソン病という病名だけでは、対象となる制度上の扱いを断定できません。</div>";
+    html+="<div class='box'><b>追加で確認したいこと</b><ul><li>Hoehn-Yahr重症度</li><li>生活機能障害度</li><li>現在の保険種別</li></ul></div>";
+    if(document.getElementById('check').checked) html+="<div class='warn'><b>見落としチェック</b><br>疾患名から加算を直接決めず、重症度・状態などの条件を確認します。</div>";
+  } else {
+    html+="<div class='answer'>このβ版では、入力内容から関連する条件を整理します。</div>";
+    html+="<div class='box'><b>追加で確認すると精度が上がる情報</b><ul><li>保険の種類</li><li>訪問の目的・タイミング</li><li>指示書や特別な指示の有無</li><li>対象となる状態・重症度</li></ul></div>";
+    if(document.getElementById('check').checked) html+="<div class='warn'><b>見落としチェック</b><br>制度上の条件が不足している場合は、推測で断定せず追加確認します。</div>";
+  }
+
+  result.innerHTML=html; result.style.display="block";
+  result.scrollIntoView({behavior:"smooth",block:"start"});
+}
+</script>
+</body>
+</html>
