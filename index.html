@@ -1,274 +1,105 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>訪問看護制度ナビ</title>
-<style>
-:root{
-  --bg:#f7f8fa;
-  --card:#fff;
-  --text:#20242a;
-  --muted:#69717d;
-  --line:#e4e7eb;
-  --accent:#2563eb;
-  --soft:#eef4ff;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP","Hiragino Sans",sans-serif;
-}
-.wrap{
-  max-width:760px;
-  margin:0 auto;
-  padding:28px 18px 60px;
-}
-.head{
-  margin-bottom:22px;
-}
-.head h1{
-  font-size:25px;
-  margin:0 0 8px;
-}
-.head p{
-  margin:0;
-  color:var(--muted);
-  line-height:1.7;
-}
-.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:20px;
-  margin:14px 0;
-}
-label{
-  display:block;
-  font-weight:700;
-  margin-bottom:8px;
-}
-.field{
-  margin-bottom:18px;
-}
-input,select,textarea{
-  width:100%;
-  border:1px solid #d6dae0;
-  border-radius:10px;
-  padding:12px;
-  font-size:16px;
-  background:#fff;
-}
-textarea{
-  min-height:120px;
-  resize:vertical;
-}
-.hint{
-  font-size:13px;
-  color:var(--muted);
-  margin-top:6px;
-}
-.check{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-weight:600;
-}
-.check input{
-  width:20px;
-  height:20px;
-}
-button{
-  width:100%;
-  border:0;
-  border-radius:11px;
-  padding:13px 16px;
-  background:var(--accent);
-  color:#fff;
-  font-size:16px;
-  font-weight:700;
-  cursor:pointer;
-}
-button:disabled{
-  opacity:.6;
-  cursor:wait;
-}
-.result{
-  display:none;
-}
-.result h2{
-  font-size:19px;
-  margin:0 0 10px;
-}
-.answer{
-  white-space:pre-wrap;
-  line-height:1.8;
-  font-size:15px;
-}
-.loading{
-  display:none;
-  text-align:center;
-  color:var(--muted);
-  padding:20px;
-}
-.error{
-  display:none;
-  color:#b42318;
-  background:#fff1f0;
-  border:1px solid #ffd5d2;
-  border-radius:10px;
-  padding:14px;
-  line-height:1.6;
-}
-footer{
-  font-size:11px;
-  color:var(--muted);
-  margin-top:20px;
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f2f8f8">
+  <title>訪問看護制度ナビ</title>
+  <link rel="stylesheet" href="./css/style.css">
 </head>
-
 <body>
-<div class="wrap">
+  <div class="wrap">
+    <header class="head">
+      <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="brand-copy">
+        <p class="eyebrow">現場での制度確認をサポートするツール</p>
+        <h1>訪問看護制度ナビ</h1>
+        <p class="tagline">訪問看護の制度・加算を、かんたんに確認</p>
+      </div>
+    </header>
 
-  <div class="head">
-    <h1>訪問看護制度ナビ</h1>
-    <p>細かくてややこしい訪問看護制度を、必要な条件から一緒に整理します。</p>
+    <main>
+      <section class="form-section" aria-labelledby="form-heading">
+        <div class="section-intro">
+          <p class="step-label">制度確認</p>
+          <h2 id="form-heading">まずは状況を入力してください</h2>
+          <p>分かる範囲の情報で大丈夫です。</p>
+        </div>
+
+        <div class="form-grid">
+          <div class="card field-card">
+            <label class="title" for="age">年齢</label>
+            <input id="age" type="number" min="0" max="120" inputmode="numeric" placeholder="例：75">
+          </div>
+
+          <fieldset class="card field-card insurance-card">
+            <legend class="title">保険の種類</legend>
+            <div class="choices">
+              <label><input type="radio" name="insurance" value="介護保険">介護保険</label>
+              <label><input type="radio" name="insurance" value="医療保険">医療保険</label>
+              <label><input type="radio" name="insurance" value="わからない" checked>わからない</label>
+            </div>
+          </fieldset>
+
+          <div class="card field-card condition-card">
+            <label class="title" for="condition">疾患・状態</label>
+            <p class="field-hint">分かっている病名や状態を入力</p>
+            <textarea id="condition" class="condition-input" placeholder="例：パーキンソン病、脳梗塞後遺症、末期がん など"></textarea>
+          </div>
+
+          <div class="card field-card question-card">
+            <label class="title" for="question">確認したいこと</label>
+            <p class="field-hint">知りたい内容をそのまま入力できます</p>
+            <textarea id="question" class="question-input" placeholder="例：退院日に訪問できる？&#10;初回加算は算定できる？&#10;この利用者さんで使える加算は？"></textarea>
+          </div>
+        </div>
+
+        <section class="card check-card" aria-labelledby="check-heading">
+          <div class="check-copy">
+            <h3 id="check-heading">見落としチェック</h3>
+            <p>制度だけでなく、算定前に確認しておきたいポイント</p>
+          </div>
+          <label class="switch-label" for="check">
+            <span class="switch-text">確認する</span>
+            <input id="check" type="checkbox" checked>
+            <span class="switch-ui" aria-hidden="true"></span>
+          </label>
+        </section>
+
+        <button class="submit-button" type="button" onclick="answer()">
+          <span>制度を確認する</span><span class="button-arrow" aria-hidden="true">→</span>
+        </button>
+      </section>
+
+      <section id="result" class="card result" aria-live="polite" aria-label="制度の確認結果"></section>
+
+      <section id="resultPoints" class="card result-extra result-points" aria-labelledby="points-heading">
+        <h2 id="points-heading">確認ポイント</h2>
+        <div class="result-points-content"></div>
+      </section>
+
+      <section id="resultChecks" class="card result-extra result-checks" aria-labelledby="result-check-heading">
+        <h2 id="result-check-heading">見落としチェック</h2>
+        <p class="extra-intro">確認した項目にチェックを付けてください。</p>
+        <div class="result-check-content"></div>
+      </section>
+
+      <section id="resultSources" class="card result-extra result-sources" aria-labelledby="source-heading">
+        <h2 id="source-heading">根拠資料</h2>
+        <div class="result-source-content"></div>
+      </section>
+
+      <div id="glossary" class="card" style="display:none">
+        <h2>用語を確認する</h2>
+        <div id="terms"></div>
+      </div>
+    </main>
+
+    <footer>β版：実務確認用の試作です。制度判断は最新の厚生労働省資料・自治体等の運用も確認してください。</footer>
   </div>
 
-  <div class="card">
-
-    <div class="field">
-      <label for="age">① 年齢</label>
-      <input id="age" type="number" min="0" max="120" placeholder="例：75">
-    </div>
-
-    <div class="field">
-      <label for="insurance">② 保険の種類</label>
-      <select id="insurance">
-        <option value="">選択してください</option>
-        <option value="医療保険">医療保険</option>
-        <option value="介護保険">介護保険</option>
-        <option value="わからない">わからない</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label for="condition">③ 疾患・状態</label>
-      <input id="condition" type="text" placeholder="例：ALS、パーキンソン病、脳梗塞後遺症">
-    </div>
-
-    <div class="field">
-      <label for="question">④ 知りたいこと</label>
-      <textarea id="question" placeholder="例：介護保険から医療保険に切り替えた方がいい？"></textarea>
-    </div>
-
-    <div class="field">
-      <label class="check">
-        <input id="checkMissing" type="checkbox" checked>
-        見落としチェックもする
-      </label>
-      <div class="hint">関連する制度や、追加で確認した方がよい条件も確認します。</div>
-    </div>
-
-    <button id="submitBtn" onclick="ask()">制度を確認する</button>
-
-    <div id="loading" class="loading">
-      制度を整理しています…
-    </div>
-
-    <div id="error" class="error"></div>
-
-  </div>
-
-  <div id="result" class="card result">
-    <h2>回答</h2>
-    <div id="answer" class="answer"></div>
-  </div>
-
-  <footer>
-    ※本ツールは制度情報を整理するための補助ツールです。実際の算定については最新の厚生労働省通知・告示等をご確認ください。
-  </footer>
-
-</div>
-
-<script>
-const API_URL =
-  "https://blue-grass-6d34.jun-herogamign.workers.dev/";
-
-async function ask(){
-
-  const age = document.getElementById("age").value;
-  const insurance = document.getElementById("insurance").value;
-  const condition = document.getElementById("condition").value.trim();
-  const question = document.getElementById("question").value.trim();
-  const checkMissing = document.getElementById("checkMissing").checked;
-
-  const error = document.getElementById("error");
-  const loading = document.getElementById("loading");
-  const result = document.getElementById("result");
-  const answer = document.getElementById("answer");
-  const button = document.getElementById("submitBtn");
-
-  error.style.display = "none";
-  result.style.display = "none";
-
-  if(!age || !insurance || !condition || !question){
-    error.textContent = "年齢・保険の種類・疾患/状態・知りたいことを入力してください。";
-    error.style.display = "block";
-    return;
-  }
-
-  button.disabled = true;
-  loading.style.display = "block";
-
-  try{
-
-    const response = await fetch(API_URL, {
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        age,
-        insurance,
-        condition,
-        question,
-        checkMissing
-      })
-    });
-
-    const data = await response.json();
-
-    if(!response.ok || !data.success){
-      throw new Error(data.error || "回答を取得できませんでした。");
-    }
-
-    answer.textContent = data.answer;
-    result.style.display = "block";
-
-    result.scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
-
-  }catch(e){
-
-    error.textContent =
-      "AIとの接続でエラーが発生しました。\n" + e.message;
-
-    error.style.display = "block";
-
-  }finally{
-
-    button.disabled = false;
-    loading.style.display = "none";
-
-  }
-}
-</script>
-
+  <script defer src="./js/glossary.js"></script>
+  <script defer src="./js/rules.js"></script>
+  <script defer src="./js/app.js"></script>
 </body>
 </html>
