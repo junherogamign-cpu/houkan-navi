@@ -297,7 +297,7 @@ footer { padding: 6px 2px; color: var(--muted); font-size: 11px; line-height: 1.
 }
 .question-card .field-hint { margin: 2px 0 6px; font-size: 11px; line-height: 1.4; }
 .question-input {
-  min-height: 112px;
+  min-height: 124px;
   padding: 10px 11px;
   line-height: 1.55;
 }
@@ -321,7 +321,7 @@ footer { padding: 6px 2px; color: var(--muted); font-size: 11px; line-height: 1.
   .user-info-card { grid-template-columns: 58px minmax(0, 1fr); gap: 6px; padding: 8px; }
   .insurance-field .choices { gap: 4px; }
   .insurance-field .choices label { padding-inline: 4px; font-size: 10px; }
-  .question-input { min-height: 104px; }
+  .question-input { min-height: 116px; }
   .check-copy p { max-width: 190px; }
 }
 
