@@ -22,35 +22,39 @@
       <section class="form-section" aria-labelledby="form-heading">
         <div class="section-intro">
           <p class="step-label">制度確認</p>
-          <h2 id="form-heading">まずは状況を入力してください</h2>
+          <h2 id="form-heading">利用者情報を見ながら質問できます</h2>
           <p>分かる範囲の情報で大丈夫です。</p>
         </div>
 
         <div class="form-grid">
-          <div class="card field-card">
-            <label class="title" for="age">年齢</label>
-            <input id="age" type="number" min="0" max="120" inputmode="numeric" placeholder="例：75">
-          </div>
-
-          <fieldset class="card field-card insurance-card">
-            <legend class="title">保険の種類</legend>
-            <div class="choices">
-              <label><input type="radio" name="insurance" value="介護保険">介護保険</label>
-              <label><input type="radio" name="insurance" value="医療保険">医療保険</label>
-              <label><input type="radio" name="insurance" value="わからない" checked>わからない</label>
+          <section class="card user-info-card" aria-label="利用者情報">
+            <div class="age-field">
+              <label class="title" for="age">年齢</label>
+              <div class="age-control">
+                <input id="age" type="number" min="0" max="120" inputmode="numeric" placeholder="75">
+                <span>歳</span>
+              </div>
             </div>
-          </fieldset>
+
+            <fieldset class="insurance-field">
+              <legend class="title">保険の種類</legend>
+              <div class="choices">
+                <label><input type="radio" name="insurance" value="介護保険"><span>介護保険</span></label>
+                <label><input type="radio" name="insurance" value="医療保険"><span>医療保険</span></label>
+                <label><input type="radio" name="insurance" value="わからない" checked><span>わからない</span></label>
+              </div>
+            </fieldset>
+          </section>
 
           <div class="card field-card condition-card">
             <label class="title" for="condition">疾患・状態</label>
-            <p class="field-hint">分かっている病名や状態を入力</p>
-            <textarea id="condition" class="condition-input" placeholder="例：パーキンソン病、脳梗塞後遺症、末期がん など"></textarea>
+            <textarea id="condition" class="condition-input" rows="1" placeholder="例：パーキンソン病、脳梗塞後遺症 など"></textarea>
           </div>
 
           <div class="card field-card question-card">
             <label class="title" for="question">確認したいこと</label>
-            <p class="field-hint">知りたい内容をそのまま入力できます</p>
-            <textarea id="question" class="question-input" placeholder="例：退院日に訪問できる？&#10;初回加算は算定できる？&#10;この利用者さんで使える加算は？"></textarea>
+            <p class="field-hint">この利用者さんについて確認したい制度や疑問を入力してください</p>
+            <textarea id="question" class="question-input" placeholder="例：この利用者さんは週3回訪問できますか？&#10;退院直後ですが算定できる加算はありますか？&#10;この疾患の場合、どの加算を確認すればいいですか？"></textarea>
           </div>
         </div>
 
