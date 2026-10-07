@@ -229,3 +229,114 @@ footer { padding: 6px 2px; color: var(--muted); font-size: 11px; line-height: 1.
   .form-grid { gap: 16px; }
   .card { border-radius: 19px; }
 }
+
+/* Compact, information-first input layout */
+.wrap { padding-top: 12px; }
+.head { gap: 10px; padding-bottom: 12px; }
+.brand-mark { width: 36px; height: 36px; flex-basis: 36px; border-radius: 12px; }
+.brand-mark span:nth-child(1) { height: 12px; }
+.brand-mark span:nth-child(2) { height: 19px; }
+.brand-mark span:nth-child(3) { height: 14px; }
+.head h1 { font-size: 19px; }
+.tagline { margin-top: 2px; font-size: 12px; }
+.section-intro { padding: 2px 2px 8px; }
+.section-intro h2 { margin: 1px 0; font-size: 17px; }
+.section-intro p:last-child { font-size: 12px; }
+.form-grid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.form-grid .condition-card,
+.form-grid .question-card { grid-column: auto; }
+.user-info-card {
+  display: grid;
+  grid-template-columns: minmax(64px, .24fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 9px 11px;
+}
+.age-field, .insurance-field { min-width: 0; margin: 0; padding: 0; border: 0; }
+.age-field .title, .insurance-field .title { font-size: 12px; line-height: 1.35; }
+.age-control { display: flex; align-items: center; gap: 4px; margin-top: 4px; }
+.age-control input[type="number"] {
+  width: 56px;
+  min-width: 0;
+  min-height: 36px;
+  padding: 5px 7px;
+  border-radius: 9px;
+  text-align: center;
+  font-size: 15px;
+}
+.age-control span { color: var(--muted); font-size: 12px; }
+.insurance-field .choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 4px;
+}
+.insurance-field .choices label {
+  min-width: 0;
+  min-height: 32px;
+  flex: 1 1 auto;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px 6px;
+  border-radius: 9px;
+  font-size: 11px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.insurance-field .choices input { width: 15px; height: 15px; flex-basis: 15px; }
+.form-grid .condition-card,
+.form-grid .question-card { padding: 10px 12px; }
+.condition-card .title, .question-card .title { font-size: 13px; }
+.condition-input {
+  min-height: 46px;
+  margin-top: 4px;
+  padding: 9px 10px;
+  line-height: 1.45;
+  resize: vertical;
+}
+.question-card .field-hint { margin: 2px 0 6px; font-size: 11px; line-height: 1.4; }
+.question-input {
+  min-height: 112px;
+  padding: 10px 11px;
+  line-height: 1.55;
+}
+.check-card { gap: 8px; margin-top: 8px; padding: 9px 12px; }
+.check-copy h3 { font-size: 13px; }
+.check-copy p { margin-top: 2px; font-size: 10px; }
+.switch-label { gap: 6px; }
+.switch-text { font-size: 11px; }
+.switch-ui { width: 38px; height: 23px; }
+.switch-ui::after { width: 17px; height: 17px; }
+.switch-label input:checked + .switch-ui::after { transform: translateX(15px); }
+.submit-button { min-height: 52px; margin: 8px 0 16px; padding: 11px 15px; border-radius: 12px; font-size: 15px; }
+
+@media (max-width: 359px) {
+  .wrap { width: calc(100% - 24px); padding-top: 8px; }
+  .head { gap: 8px; padding-bottom: 9px; }
+  .head h1 { font-size: 18px; }
+  .tagline { font-size: 11px; }
+  .section-intro { padding-bottom: 6px; }
+  .section-intro h2 { font-size: 16px; }
+  .user-info-card { grid-template-columns: 58px minmax(0, 1fr); gap: 6px; padding: 8px; }
+  .insurance-field .choices { gap: 4px; }
+  .insurance-field .choices label { padding-inline: 4px; font-size: 10px; }
+  .question-input { min-height: 104px; }
+  .check-copy p { max-width: 190px; }
+}
+
+@media (min-width: 600px) {
+  .wrap { padding-top: 24px; }
+  .head { padding-bottom: 19px; }
+  .head h1 { font-size: 23px; }
+  .tagline { font-size: 13px; }
+  .section-intro h2 { font-size: 19px; }
+  .user-info-card { padding: 12px 14px; }
+  .age-field .title, .insurance-field .title { font-size: 13px; }
+  .insurance-field .choices label { min-height: 36px; font-size: 12px; }
+  .form-grid .condition-card, .form-grid .question-card { padding: 13px 15px; }
+  .condition-input { min-height: 52px; }
+  .question-input { min-height: 126px; }
+  .check-card { padding: 12px 15px; }
+  .submit-button { min-height: 56px; font-size: 16px; }
+}
