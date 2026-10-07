@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "1.0.0",
+  "informationAsOf": "2026-10-07",
+  "records": [
+    {
+      "id": "medical-weekly-frequency-limit-r08",
+      "name": "訪問看護基本療養費等の週3日限度に関する規定",
+      "insurance": "medical",
+      "limit": {
+        "unit": "日/週",
+        "value": 3
+      },
+      "appliesTo": [
+        "訪問看護基本療養費（Ⅰ）（ハを除く）",
+        "訪問看護基本療養費（Ⅱ）（ハを除く）",
+        "精神科訪問看護基本療養費（Ⅰ）・（Ⅲ）"
+      ],
+      "exceptions": [
+        {
+          "condition": "基準告示第2の1に規定する疾病等の利用者",
+          "limit": {
+            "unit": "日/週",
+            "value": 4,
+            "operator": ">="
+          }
+        }
+      ],
+      "notes": "区分・同一建物居住者の条件・合算する算定日の範囲など、適用細則は根拠資料の該当箇所を確認して運用する。",
+      "source": "厚生労働省保険局",
+      "sourceUrl": "https://www.mhlw.go.jp/content/12400000/001686845.pdf",
+      "documentName": "訪問看護療養費に係る指定訪問看護の費用の額の算定方法の一部改正に伴う実施上の留意事項について（令和8年3月5日保発0305第19号、令和8年4月2日訂正後）",
+      "publishedDate": "2026-03-05",
+      "effectiveDate": "2026-06-01",
+      "informationAsOf": "2026-10-07",
+      "page": "PDF 3（本文表示4）",
+      "verified": true
+    },
+    {
+      "id": "medical-master-frequency-limit-table-r08-20260630",
+      "name": "訪問看護療養費マスター（算定回数限度テーブル）",
+      "masterType": "official-download-catalog",
+      "recordCount": null,
+      "fileSize": "8.32KB",
+      "contentImported": false,
+      "notes": "公式配布ページに掲載。ZIP本体未取得。既存の告示から抽出した回数制限レコードとは別の目録情報。",
+      "source": "厚生労働省 診療報酬情報提供サービス",
+      "sourceUrl": "https://shinryohoshu.mhlw.go.jp/shinryohoshu/kaitei/",
+      "documentName": "令和8年度診療報酬改定対応マスター ダウンロードサービス",
+      "publishedDate": "",
+      "effectiveDate": "",
+      "informationAsOf": "2026-10-07",
+      "page": "訪問看護療養費マスター一覧（基本表・対応表・回数限度・併算定背反・施設基準）",
+      "verified": true,
+      "lastUpdatedDate": "2026-06-30"
+    }
+  ]
+}

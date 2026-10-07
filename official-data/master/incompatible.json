@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0.0",
+  "informationAsOf": "2026-10-07",
+  "records": [
+    {
+      "id": "medical-master-incompatible-table-r08-20260630",
+      "name": "訪問看護療養費マスター（併算定背反テーブル）",
+      "masterType": "official-download-catalog",
+      "recordCount": null,
+      "fileSize": "233KB",
+      "contentImported": false,
+      "notes": "公式配布ページに掲載。ZIP本体未取得のため併算定関係の行は未収録。",
+      "source": "厚生労働省 診療報酬情報提供サービス",
+      "sourceUrl": "https://shinryohoshu.mhlw.go.jp/shinryohoshu/kaitei/",
+      "documentName": "令和8年度診療報酬改定対応マスター ダウンロードサービス",
+      "publishedDate": "",
+      "effectiveDate": "",
+      "informationAsOf": "2026-10-07",
+      "page": "訪問看護療養費マスター一覧（基本表・対応表・回数限度・併算定背反・施設基準）",
+      "verified": true,
+      "lastUpdatedDate": "2026-06-30"
+    }
+  ]
+}
