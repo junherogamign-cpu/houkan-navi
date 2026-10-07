@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "1.0.0",
+  "informationAsOf": "2026-10-07",
+  "records": [
+    {
+      "id": "medical-special-instruction-frequency-r08",
+      "name": "特別訪問看護指示書による頻回訪問の期間・回数",
+      "insurance": "medical",
+      "conditions": [
+        "主治医から急性増悪等により一時的に頻回の訪問看護が必要との特別訪問看護指示書の交付を受ける",
+        "指示書及び訪問看護計画書に基づき訪問看護を実施する"
+      ],
+      "limit": {
+        "daysFromInstructionDate": 14,
+        "perMonth": 1
+      },
+      "exceptions": [
+        "別に厚生労働大臣が定める者は月2回まで"
+      ],
+      "notes": "通常、月1回、指示があった日から起算して14日を限度。対象者の例外適用は別途告示等で確認する。",
+      "source": "厚生労働省保険局",
+      "sourceUrl": "https://www.mhlw.go.jp/content/12400000/001665206.pdf",
+      "documentName": "訪問看護療養費に係る指定訪問看護の費用の額の算定方法の一部を改正する件（令和8年厚生労働省告示第74号）",
+      "publishedDate": "2026-03-05",
+      "effectiveDate": "2026-06-01",
+      "informationAsOf": "2026-10-07",
+      "page": "PDF 4（告示別表 注6）",
+      "verified": true
+    },
+    {
+      "id": "medical-multiple-visits-addon-r08",
+      "name": "難病等複数回訪問加算",
+      "insurance": "medical",
+      "conditions": [
+        "別に厚生労働大臣が定める疾病等の利用者、または特別訪問看護指示書の交付を受けた利用者",
+        "必要に応じ同日に2回または3回以上訪問"
+      ],
+      "amounts": {
+        "twiceDailyYen": [
+          4500,
+          4000,
+          3700,
+          3500,
+          3300
+        ],
+        "threeOrMoreDailyYen": [
+          8000,
+          7200,
+          6300,
+          4800,
+          4100
+        ]
+      },
+      "amountsNote": "各配列は告示記載の同一建物内人数区分順。三回以上の一部人数区分には月20日目まで／21日目以降の別額があり、ここでは網羅表として使わず告示表を参照する。",
+      "frequencyLimit": "1日2回または3回以上の区分。金額は同一建物内人数等で異なる。",
+      "source": "厚生労働省保険局",
+      "sourceUrl": "https://www.mhlw.go.jp/content/12400000/001665206.pdf",
+      "documentName": "訪問看護療養費に係る指定訪問看護の費用の額の算定方法の一部を改正する件（令和8年厚生労働省告示第74号）",
+      "publishedDate": "2026-03-05",
+      "effectiveDate": "2026-06-01",
+      "informationAsOf": "2026-10-07",
+      "page": "PDF 4–5（告示別表 注7）",
+      "verified": true
+    },
+    {
+      "id": "medical-emergency-visit-addon-r08",
+      "name": "緊急訪問看護加算",
+      "insurance": "medical",
+      "conditions": [
+        "利用者又は家族等の求め",
+        "主治医（診療所又は在宅療養支援病院の保険医）の指示",
+        "看護師等が緊急に指定訪問看護を実施"
+      ],
+      "amounts": {
+        "first14DaysYen": 2650,
+        "fromDay15Yen": 2000
+      },
+      "frequencyLimit": "月内の算定日数により月14日目まで／15日目以降で区分。",
+      "source": "厚生労働省保険局",
+      "sourceUrl": "https://www.mhlw.go.jp/content/12400000/001665206.pdf",
+      "documentName": "訪問看護療養費に係る指定訪問看護の費用の額の算定方法の一部を改正する件（令和8年厚生労働省告示第74号）",
+      "publishedDate": "2026-03-05",
+      "effectiveDate": "2026-06-01",
+      "informationAsOf": "2026-10-07",
+      "page": "PDF 5（告示別表 注9）",
+      "verified": true
+    },
+    {
+      "id": "medical-long-time-visit-addon-r08",
+      "name": "長時間訪問看護加算",
+      "insurance": "medical",
+      "conditions": [
+        "別に厚生労働大臣が定める長時間の訪問を要する者",
+        "看護師等が長時間にわたる指定訪問看護を実施"
+      ],
+      "amountYen": 5200,
+      "frequencyLimit": "週1日。別に厚生労働大臣が定める者は週3日。",
+      "source": "厚生労働省保険局",
+      "sourceUrl": "https://www.mhlw.go.jp/content/12400000/001665206.pdf",
+      "documentName": "訪問看護療養費に係る指定訪問看護の費用の額の算定方法の一部を改正する件（令和8年厚生労働省告示第74号）",
+      "publishedDate": "2026-03-05",
+      "effectiveDate": "2026-06-01",
+      "informationAsOf": "2026-10-07",
+      "page": "PDF 5（告示別表 注10）",
+      "verified": true
+    },
+    {
+      "id": "medical-management-addons-r08",
+      "name": "24時間対応体制加算・特別管理加算",
+      "insurance": "medical",
+      "items": [
+        {
+          "name": "24時間対応体制加算",
+          "conditions": [
+            "届出基準に適合する訪問看護ステーション",
+            "利用者等の同意",
+            "同月に他の訪問看護ステーションが同加算を算定していない"
+          ],
+          "amountYen": {
+            "負担軽減取組あり": 6800,
+            "その他": 6520
+          },
+          "limit": "月1回"
+        },
+        {
+          "name": "特別管理加算",
+          "conditions": [
+            "届出基準に適合する訪問看護ステーション",
+            "別に定める状態等にある利用者に計画的管理を実施"
+          ],
+          "amountYen": {
+            "usual": 2500,
+            "highSeverity": 5000
+          },
+          "limit": "月1回"
+        }
+      ],
+      "source": "厚生労働省保険局",
+      "sourceUrl": "https://www.mhlw.go.jp/content/12400000/001665206.pdf",
+      "documentName": "訪問看護療養費に係る指定訪問看護の費用の額の算定方法の一部を改正する件（令和8年厚生労働省告示第74号）",
+      "publishedDate": "2026-03-05",
+      "effectiveDate": "2026-06-01",
+      "informationAsOf": "2026-10-07",
+      "page": "PDF 13（告示別表 区分番号02 注2–3）",
+      "verified": true
+    }
+  ]
+}

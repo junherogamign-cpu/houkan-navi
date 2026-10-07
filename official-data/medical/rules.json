@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.0.0",
+  "informationAsOf": "2026-10-07",
+  "records": [
+    {
+      "id": "medical-table7-parkinsons-criteria-r08",
+      "name": "別表第7・パーキンソン病関連疾患の重症度条件",
+      "insurance": "medical",
+      "condition": {
+        "disease": "パーキンソン病関連疾患",
+        "yahrStage": { "operator": ">=", "value": 3 },
+        "functionalDisabilityDegree": [2, 3],
+        "logic": "AND"
+      },
+      "conclusion": "別表第7のパーキンソン病関連疾患は、ヤールの重症度分類がステージ3以上かつ生活機能障害度がⅡ度またはⅢ度のものに限る。",
+      "confirmationPoints": [
+        "パーキンソン病関連疾患に該当すること",
+        "ヤールの重症度分類がステージ3以上であること",
+        "生活機能障害度がⅡ度またはⅢ度であること"
+      ],
+      "checks": [
+        "疾患名を確認",
+        "ヤールの重症度分類を確認",
+        "生活機能障害度を確認"
+      ],
+      "source": "厚生労働省保険局",
+      "sourceUrl": "https://www.mhlw.go.jp/content/12400000/001686845.pdf",
+      "documentName": "訪問看護療養費に係る指定訪問看護の費用の額の算定方法の一部改正に伴う実施上の留意事項について（令和8年3月5日保発0305第19号、令和8年4月2日訂正後）",
+      "publishedDate": "2026-03-05",
+      "effectiveDate": "2026-06-01",
+      "informationAsOf": "2026-10-07",
+      "page": "PDF 2（本文表示3）",
+      "verified": true
+    }
+  ]
+}

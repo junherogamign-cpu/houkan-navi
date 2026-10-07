@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "informationAsOf": "2026-10-07",
+  "records": [
+    {
+      "id": "medical-care-insured-general-exclusion-r08",
+      "name": "介護保険の要介護被保険者等に対する訪問看護療養費の原則的取扱い",
+      "insurance": "both",
+      "rule": "別に厚生労働大臣が定める場合を除き、介護保険法第62条に規定する要介護被保険者等について、告示の指定訪問看護費用を算定しない。",
+      "exceptions": "例外となる場合の具体的範囲は別に厚生労働大臣が定める告示等との照合が必要。",
+      "source": "厚生労働省保険局",
+      "sourceUrl": "https://www.mhlw.go.jp/content/12400000/001665206.pdf",
+      "documentName": "訪問看護療養費に係る指定訪問看護の費用の額の算定方法の一部を改正する件（令和8年厚生労働省告示第74号）",
+      "publishedDate": "2026-03-05",
+      "effectiveDate": "2026-06-01",
+      "informationAsOf": "2026-10-07",
+      "page": "PDF 2（告示別表 通則2）",
+      "verified": true
+    }
+  ]
+}
