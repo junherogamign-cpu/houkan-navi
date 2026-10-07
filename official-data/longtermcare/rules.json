@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "informationAsOf": "2026-10-07",
+  "records": [
+    {
+      "id": "care-visit-nursing-basic-fee-r08-consolidated",
+      "name": "訪問看護費の基本単位数（指定訪問看護ステーション）",
+      "insurance": "longtermcare",
+      "feeSchedule": "per visit",
+      "units": {
+        "under20Minutes": 314,
+        "under30Minutes": 471,
+        "30ToUnder60Minutes": 823,
+        "60ToUnder90Minutes": 1128,
+        "physicalOccupationalSpeechTherapyPerVisit": 294
+      },
+      "notes": "この記録は指定訪問看護ステーションの区分。病院・診療所の区分、定期巡回連携、各種注・加算は別項目を確認する。",
+      "source": "厚生労働省",
+      "sourceUrl": "https://www.mhlw.go.jp/web/t_doc?dataId=82aa0253&dataType=0&pageNo=1",
+      "documentName": "指定居宅サービスに要する費用の額の算定に関する基準（平成12年厚生省告示第19号、訪問看護費関係）",
+      "publishedDate": "",
+      "effectiveDate": "",
+      "informationAsOf": "2026-10-07",
+      "page": "第2・4・3（訪問看護費）",
+      "verified": true
+    }
+  ]
+}
